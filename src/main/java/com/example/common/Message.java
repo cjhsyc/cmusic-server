@@ -41,6 +41,11 @@ public class Message {
             case "error":
                 setSuccess(false);
                 break;
+            case "fatal":
+                setCode(500);
+                setSuccess(false);
+                setType("error");
+                break;
             default:
                 System.out.println("type设置错误");
                 break;

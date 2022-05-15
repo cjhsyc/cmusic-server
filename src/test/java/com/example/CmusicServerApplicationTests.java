@@ -36,4 +36,25 @@ class CmusicServerApplicationTests {
         consumerService.save(consumer);
     }
 
+    @Test
+    void test2(){
+        Consumer consumer = new Consumer();
+        consumer.setId(26);
+        consumer.setUsername("jing1");
+        consumer.setPhoneNum(null);
+        System.out.println(consumer);
+        consumerService.updateById(consumer);
+    }
+
+    @Test
+    void test3(){
+        Consumer consumer = new Consumer();
+        consumer.setId(26);
+        consumer.setUsername("jing1");
+        consumer.setBirth(new Date());
+        consumer.setPhoneNum("12309874576");
+        consumer.setPassword("1234");
+        System.out.println(consumer);
+        System.out.println(consumerMapper.update(consumer));
+    }
 }

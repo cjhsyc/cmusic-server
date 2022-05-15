@@ -1,9 +1,8 @@
 package com.example.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.common.UpdatePwdData;
 import com.example.dao.ConsumerMapper;
 import com.example.domain.Consumer;
 import com.example.service.ConsumerService;
@@ -36,14 +35,14 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer> i
     @Override
     public Boolean existEmail(String email) {
         QueryWrapper<Consumer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("email",email);
+        queryWrapper.eq("email", email);
         return consumerMapper.selectOne(queryWrapper) != null;
     }
 
     @Override
     public Boolean existPhoneNum(String phoneNum) {
         QueryWrapper<Consumer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("phone_num",phoneNum);
+        queryWrapper.eq("phone_num", phoneNum);
         return consumerMapper.selectOne(queryWrapper) != null;
     }
 
@@ -52,12 +51,31 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer> i
         consumer.setAvator("/img/avatorImages/user.jpg");
         consumer.setCreateTime(new Date());
         consumer.setUpdateTime(new Date());
-        if (consumer.getEmail().equals("")){
+        if (consumer.getEmail().equals("")) {
             consumer.setEmail(null);
         }
-        if (consumer.getPhoneNum().equals("")){
+        if (consumer.getPhoneNum().equals("")) {
             consumer.setPhoneNum(null);
         }
         return consumerMapper.insert(consumer) > 0;
+    }
+
+    @Override
+    public Boolean update(Consumer consumer) {
+        if (consumer.getEmail().equals("")) {
+            consumer.setEmail(null);
+        }
+        if (consumer.getPhoneNum().equals("")) {
+            consumer.setPhoneNum(null);
+        }
+        return consumerMapper.update(consumer) > 0;
+    }
+
+    @Override
+    public Boolean updatePassword(UpdatePwdData updatePwdData) {
+        Consumer consumer = new Consumer();
+        consumer.setId(updatePwdData.getId());
+        consumer.setPassword(updatePwdData.getPassword());
+        return consumerMapper.updateById(consumer) > 0;
     }
 }
