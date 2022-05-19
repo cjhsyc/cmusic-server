@@ -1,7 +1,9 @@
 package com.example;
 
 import com.example.dao.RankMapper;
+import com.example.dao.SongMapper;
 import com.example.domain.Rank;
+import com.example.service.impl.SongServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +12,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class RankTests {
     @Autowired
     RankMapper rankMapper;
+
+    @Autowired
+    SongMapper songMapper;
+
+    @Autowired
+    SongServiceImpl songServiceImpl;
+
+    @Test
+    void test6(){
+        System.out.println(songServiceImpl.allSong());
+    }
+
+    @Test
+    void tese5(){
+        System.out.println(songMapper.selectList(null));
+    }
+
     @Test
     void test1(){
         System.out.println(rankMapper.getCount(1));
