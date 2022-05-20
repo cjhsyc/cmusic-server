@@ -50,9 +50,9 @@ public class SongListController {
 
         boolean res = songListService.addSongList(songList);
         if (res) {
-            return new Message("success","添加成功");
+            return new Message("success", "添加成功");
         } else {
-            return new Message("error","添加失败");
+            return new Message("error", "添加失败");
         }
     }
 
@@ -63,33 +63,30 @@ public class SongListController {
 
         boolean res = songListService.deleteSongList(Integer.parseInt(id));
         if (res) {
-            return new Message("success","删除成功");
+            return new Message("success", "删除成功");
         } else {
-            return new Message("error","删除失败");
+            return new Message("error", "删除失败");
         }
     }
 
     // 返回所有歌单
     @GetMapping
     public Message allSongList() {
-
-        return new Message("success",null,songListService.allSongList());
+        return new Message("success", null, songListService.allSongList());
     }
 
     // 返回标题包含文字的歌单 err
     @GetMapping("likeTitle/detail")
     public Message songListOfLikeTitle(HttpServletRequest req) {
         String title = req.getParameter("title").trim();
-
-        return new Message("success",null,songListService.likeTitle('%' + title + '%'));
+        return new Message("success", null, songListService.likeTitle('%' + title + '%'));
     }
 
     // 返回指定类型的歌单 err
     @GetMapping("style/detail")
     public Message songListOfStyle(HttpServletRequest req) {
         String style = req.getParameter("style").trim();
-
-        return new Message("success",null,songListService.likeStyle('%' + style + '%'));
+        return new Message("success", null, songListService.likeStyle('%' + style + '%'));
     }
 
     // 更新歌单信息
@@ -109,9 +106,9 @@ public class SongListController {
 
         boolean res = songListService.updateSongListMsg(songList);
         if (res) {
-            return new Message("success","修改成功");
+            return new Message("success", "修改成功");
         } else {
-            return new Message("error","修改失败");
+            return new Message("error", "修改失败");
         }
     }
 
@@ -123,7 +120,7 @@ public class SongListController {
         String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "songListPic";
         File file1 = new File(filePath);
         if (!file1.exists()) {
-            file1.mkdir();
+            file1.mkdirs();
         }
 
         File dest = new File(filePath + System.getProperty("file.separator") + fileName);
@@ -136,12 +133,12 @@ public class SongListController {
 
             boolean res = songListService.updateSongListImg(songList);
             if (res) {
-                return new Message("success","上传成功",imgPath);
+                return new Message("success", "上传成功", imgPath);
             } else {
-                return new Message("error","上传失败");
+                return new Message("error", "上传失败");
             }
         } catch (IOException e) {
-            return new Message("fatal","上传失败" + e.getMessage());
+            return new Message("fatal", "上传失败" + e.getMessage());
         }
     }
 }

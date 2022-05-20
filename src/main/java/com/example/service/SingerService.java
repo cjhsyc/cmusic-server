@@ -6,7 +6,7 @@ import com.example.domain.Singer;
 import java.util.List;
 
 public interface SingerService extends IService<Singer> {
-    boolean addSinger (Singer singer);
+    boolean addSinger(Singer singer);
 
     boolean updateSingerMsg(Singer singer);
 

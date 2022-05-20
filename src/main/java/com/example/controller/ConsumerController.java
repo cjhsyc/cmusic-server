@@ -6,8 +6,11 @@ import com.example.constant.Constants;
 import com.example.domain.Consumer;
 import com.example.service.impl.ConsumerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +21,15 @@ import java.util.List;
 public class ConsumerController {
     @Autowired
     private ConsumerServiceImpl consumerService;
+
+    @Configuration
+    public static class MyPicConfig implements WebMvcConfigurer {
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/img/avatorImages/**")
+                    .addResourceLocations(Constants.AVATOR_IMAGES_PATH);
+        }
+    }
 
     //返回所有用户
     @GetMapping
@@ -42,10 +54,10 @@ public class ConsumerController {
         if (consumerService.existUsername(consumer.getUsername())) {
             return new Message("warning", "用户名已注册");
         }
-        if (!consumer.getPhoneNum().equals("") && consumerService.existPhoneNum(consumer.getPhoneNum())) {
+        if (consumer.getPhoneNum() != null && !consumer.getPhoneNum().equals("") && consumerService.existPhoneNum(consumer.getPhoneNum())) {
             return new Message("warning", "手机号已注册");
         }
-        if (!consumer.getEmail().equals("") && consumerService.existEmail(consumer.getEmail())) {
+        if (consumer.getEmail() != null && !consumer.getEmail().equals("") && consumerService.existEmail(consumer.getEmail())) {
             return new Message("warning", "邮箱已注册");
         }
         if (consumerService.addConsumer(consumer)) {
@@ -97,7 +109,7 @@ public class ConsumerController {
     }
 
     //更新用户头像
-    @PutMapping("avatar/{id}")
+    @PostMapping("avatar/{id}")
     public Message updateAvatar(@PathVariable Integer id, @RequestParam("file") MultipartFile avatarFile) {
         String fileName = System.currentTimeMillis() + avatarFile.getOriginalFilename();
         String filePath = Constants.PROJECT_PATH + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "avatorImages";
@@ -115,11 +127,11 @@ public class ConsumerController {
             if (consumerService.updateById(consumer)) {
                 return new Message("success", "上传成功", imgPath);
             } else {
-                return new Message("error","上传失败");
+                return new Message("error", "上传失败");
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return new Message("fatal",e.getMessage());
+            return new Message("fatal", e.getMessage());
         }
     }
 }

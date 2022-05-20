@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.constant.Constants;
 import com.example.dao.RankMapper;
 import com.example.dao.SongMapper;
 import com.example.domain.Rank;
@@ -56,5 +57,12 @@ public class RankTests {
         rank.setSongListId(4);
         rank.setScore(8);
         System.out.println(rankMapper.setRank(rank));
+    }
+
+    @Test
+    void test7(){
+        System.out.println(Constants.PROJECT_PATH);
+        System.out.println(Constants.SONG_PATH);
+        System.out.println(Constants.SINGER_PIC_PATH);
     }
 }

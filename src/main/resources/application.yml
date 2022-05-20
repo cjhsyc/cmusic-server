@@ -4,7 +4,12 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/c_music
       username: root
-      password: "123456"
+      password: "090807"
+  # 访问本地带有中文、特殊字符资源404的解决方法
+  # 更改springboot2.6之后的默认程序映射请求策略
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 server:
   port: 8888

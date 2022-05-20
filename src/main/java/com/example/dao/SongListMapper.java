@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface    SongListMapper extends BaseMapper<SongList> {
+public interface SongListMapper extends BaseMapper<SongList> {
     @Select("    select *\n" +
             "    from song_list\n" +
             "    where title like #{title}")

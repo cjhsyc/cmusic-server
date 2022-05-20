@@ -30,7 +30,7 @@ public class SingerController {
     // 返回所有歌手
     @GetMapping
     public Message allSinger() {
-        return new Message("success",null,singerService.allSinger());
+        return new Message("success", null, singerService.allSinger());
     }
 
     // 根据歌手名查找歌手
@@ -38,15 +38,12 @@ public class SingerController {
     public Message singerOfName(HttpServletRequest req) {
         String name = req.getParameter("name").trim();
 
-        return new Message("success",null,singerService.singerOfName(name));
+        return new Message("success", null, singerService.singerOfName(name));
     }
 
     // 根据歌手性别查找歌手
     @GetMapping("sex/detail/{sex}")
     public Message singerOfSex(@PathVariable Integer sex) {
-        // String sex = req.getParameter("sex").trim();
-
-        return new Message("success",null,singerService.singerOfSex(sex));
+        return new Message("success", null, singerService.singerOfSex(sex));
     }
-
 }

@@ -36,7 +36,7 @@ public class CollectController {
     }
 
     //是否收藏歌曲
-    @GetMapping("status")
+    @PostMapping("status")
     public Message getStatus(Collect collect) {
         if (collectService.isCollected(collect)) {
             return new Message("success", "已收藏", true);

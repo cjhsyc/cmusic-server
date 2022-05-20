@@ -51,10 +51,10 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer> i
         consumer.setAvator("/img/avatorImages/user.jpg");
         consumer.setCreateTime(new Date());
         consumer.setUpdateTime(new Date());
-        if (consumer.getEmail().equals("")) {
+        if (consumer.getEmail() != null && consumer.getEmail().equals("")) {
             consumer.setEmail(null);
         }
-        if (consumer.getPhoneNum().equals("")) {
+        if (consumer.getPhoneNum() != null && consumer.getPhoneNum().equals("")) {
             consumer.setPhoneNum(null);
         }
         return consumerMapper.insert(consumer) > 0;
@@ -62,10 +62,10 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer> i
 
     @Override
     public Boolean update(Consumer consumer) {
-        if (consumer.getEmail().equals("")) {
+        if (consumer.getEmail() != null && consumer.getEmail().equals("")) {
             consumer.setEmail(null);
         }
-        if (consumer.getPhoneNum().equals("")) {
+        if (consumer.getPhoneNum() != null && consumer.getPhoneNum().equals("")) {
             consumer.setPhoneNum(null);
         }
         return consumerMapper.update(consumer) > 0;

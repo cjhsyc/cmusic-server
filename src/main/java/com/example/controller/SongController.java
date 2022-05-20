@@ -63,7 +63,7 @@ public class SongController {
         String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "song";
         File file1 = new File(filePath);
         if (!file1.exists()) {
-            file1.mkdir();
+            file1.mkdirs();
         }
 
         File dest = new File(filePath + System.getProperty("file.separator") + fileName);
@@ -81,12 +81,12 @@ public class SongController {
             song.setUrl(storeUrlPath);
             boolean res = songService.addSong(song);
             if (res) {
-                return new Message("success","上传成功",storeUrlPath);
+                return new Message("success", "上传成功", storeUrlPath);
             } else {
-                return new Message("error","上传失败");
+                return new Message("error", "上传失败");
             }
         } catch (IOException e) {
-            return new Message("fatal","上传失败" + e.getMessage());
+            return new Message("fatal", "上传失败" + e.getMessage());
         }
     }
 
@@ -97,16 +97,16 @@ public class SongController {
 
         boolean res = songService.deleteSong(Integer.parseInt(id));
         if (res) {
-            return new Message("success","删除成功");
+            return new Message("success", "删除成功");
         } else {
-            return new Message("error","删除失败");
+            return new Message("error", "删除失败");
         }
     }
 
     // 返回所有歌曲
     @GetMapping
     public Object allSong() {
-        return new Message("success",null,songService.allSong());
+        return new Message("success", null, songService.allSong());
     }
 
     // 返回指定歌曲ID的歌曲
@@ -114,7 +114,7 @@ public class SongController {
     public Object songOfId(HttpServletRequest req) {
         String id = req.getParameter("id");
 
-        return new Message("success",null,songService.songOfId(Integer.parseInt(id)));
+        return new Message("success", null, songService.songOfId(Integer.parseInt(id)));
     }
 
     // 返回指定歌手ID的歌曲
@@ -122,7 +122,7 @@ public class SongController {
     public Object songOfSingerId(HttpServletRequest req) {
         String singerId = req.getParameter("singerId");
 
-        return new Message("success",null,songService.songOfSingerId(Integer.parseInt(singerId)));
+        return new Message("success", null, songService.songOfSingerId(Integer.parseInt(singerId)));
     }
 
     // 返回指定歌手名的歌曲
@@ -130,7 +130,7 @@ public class SongController {
     public Object songOfSingerName(HttpServletRequest req) {
         String name = req.getParameter("name");
 
-        return new Message("success",null,songService.songOfSingerName('%' + name + '%'));
+        return new Message("success", null, songService.songOfSingerName('%' + name + '%'));
     }
 
 

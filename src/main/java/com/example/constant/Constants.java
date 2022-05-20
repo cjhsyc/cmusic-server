@@ -4,6 +4,7 @@ package com.example.constant;
 public class Constants {
     //工程根目录
     public static String PROJECT_PATH = System.getProperty("user.dir");
+
     public static String AVATOR_IMAGES_PATH = "file:" + PROJECT_PATH + "/img/avatorImages/";
     public static String SONGLIST_PIC_PATH = "file:" + PROJECT_PATH + "/img/songListPic/";
     public static String SONG_PIC_PATH = "file:" + PROJECT_PATH + "/img/songPic/";

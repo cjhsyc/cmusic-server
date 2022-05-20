@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Update;
 public interface ConsumerMapper extends BaseMapper<Consumer> {
     @Update("update consumer " +
                 "set username = #{username}, " +
-                    "password = #{password}, " +
                     "sex = #{sex}, " +
                     "phone_num = #{phoneNum}, " +
                     "email = #{email}, " +

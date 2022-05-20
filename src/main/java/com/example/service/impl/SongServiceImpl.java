@@ -17,61 +17,56 @@ public class SongServiceImpl extends ServiceImpl<SongMapper, Song> implements So
     private SongMapper songMapper;
 
     @Override
-    public List<Song> allSong()
-    {
+    public List<Song> allSong() {
         return songMapper.selectList(null);
     }
 
     @Override
-    public boolean addSong(Song song)
-    {
+    public boolean addSong(Song song) {
         return songMapper.insert(song) > 0;
     }
 
     @Override
     public boolean updateSongMsg(Song song) {
-        return songMapper.updateById(song) >0;
+        return songMapper.updateById(song) > 0;
     }
 
     @Override
     public boolean updateSongUrl(Song song) {
 
-        return songMapper.updateById(song) >0 ;
+        return songMapper.updateById(song) > 0;
     }
 
     @Override
     public boolean updateSongPic(Song song) {
 
-        return songMapper.updateById(song) >0 ;
+        return songMapper.updateById(song) > 0;
     }
 
     @Override
     public boolean deleteSong(Integer id) {
 
-        return songMapper.deleteById(id) >0 ;
+        return songMapper.deleteById(id) > 0;
     }
 
     @Override
-    public List<Song> songOfSingerId(Integer singerId)
-    {
+    public List<Song> songOfSingerId(Integer singerId) {
         QueryWrapper<Song> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("singer_id",singerId);
+        queryWrapper.eq("singer_id", singerId);
         return songMapper.selectList(queryWrapper);
     }
 
     @Override
-    public List<Song> songOfId(Integer id)
-    {
+    public List<Song> songOfId(Integer id) {
         QueryWrapper<Song> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id",id);
+        queryWrapper.eq("id", id);
         return songMapper.selectList(queryWrapper);
     }
 
     @Override
-    public List<Song> songOfSingerName(String name)
-    {
-      //  QueryWrapper<Song> queryWrapper = new QueryWrapper<>();
-      //  queryWrapper.eq("name",name);
+    public List<Song> songOfSingerName(String name) {
+        //  QueryWrapper<Song> queryWrapper = new QueryWrapper<>();
+        //  queryWrapper.eq("name",name);
         return songMapper.songOfSingerName(name);
     }
 }

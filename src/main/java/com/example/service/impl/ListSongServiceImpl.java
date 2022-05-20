@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ListSongServiceImpl extends ServiceImpl<ListSongMapper,ListSong> implements ListSongService {
+public class ListSongServiceImpl extends ServiceImpl<ListSongMapper, ListSong> implements ListSongService {
     @Autowired
     private ListSongMapper listSongMapper;
 
     @Override
-    public List<ListSong> listSongOfSongId(Integer songListId)
-    {
+    public List<ListSong> listSongOfSongId(Integer songListId) {
         return listSongMapper.listSongOfSongId(songListId);
     }
 }

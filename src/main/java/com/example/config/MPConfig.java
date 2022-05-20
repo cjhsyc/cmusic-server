@@ -14,5 +14,4 @@ public class MPConfig {
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor()); //提供分页功能的拦截器
         return interceptor;
     }
-
 }

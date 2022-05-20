@@ -29,36 +29,32 @@ public class SingerServiceImpl extends ServiceImpl<SingerMapper, Singer> impleme
     @Override
     public boolean deleteSinger(Integer id) {
         QueryWrapper<Singer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id",id);
-        return singerMapper.delete(queryWrapper) >0;
+        queryWrapper.eq("id", id);
+        return singerMapper.delete(queryWrapper) > 0;
     }
 
     @Override
-    public List<Singer> allSinger()
-    {
+    public List<Singer> allSinger() {
         return singerMapper.selectList(null);
     }
 
     @Override
-    public boolean addSinger(Singer singer)  {
+    public boolean addSinger(Singer singer) {
 
         return singerMapper.insert(singer) > 0;
     }
 
     @Override
-    public List<Singer> singerOfName(String name)
-    {
+    public List<Singer> singerOfName(String name) {
         QueryWrapper<Singer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name",name);
+        queryWrapper.eq("name", name);
         return singerMapper.selectList(queryWrapper);
     }
 
     @Override
-    public List<Singer> singerOfSex(Integer sex)
-
-    {
+    public List<Singer> singerOfSex(Integer sex) {
         QueryWrapper<Singer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("sex",sex);
+        queryWrapper.eq("sex", sex);
         return singerMapper.selectList(queryWrapper);
     }
 }
