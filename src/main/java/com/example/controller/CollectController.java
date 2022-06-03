@@ -17,6 +17,7 @@ public class CollectController {
     //收藏歌曲
     @PostMapping
     public Message addCollection(Collect collect) {
+        System.out.println(collect);
         collect.setCreateTime(new Date());
         if (collectService.save(collect)) {
             return new Message("success", "收藏成功", true);
@@ -28,6 +29,17 @@ public class CollectController {
     //取消收藏
     @DeleteMapping
     public Message deleteCollection(Collect collect) {
+        System.out.println(collect + "___________delete");
+        if (collectService.deleteCollection(collect)) {
+            return new Message("success", "取消收藏", false);
+        } else {
+            return new Message("error", "取消收藏失败");
+        }
+    }
+
+    @PostMapping("delete")
+    public Message deleteTest(Collect collect){
+        System.out.println(collect + "__________test");
         if (collectService.deleteCollection(collect)) {
             return new Message("success", "取消收藏", false);
         } else {
